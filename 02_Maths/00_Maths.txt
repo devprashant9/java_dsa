@@ -1,0 +1,93 @@
+What You Need to Know About Basic Mathematics for Getting Started With DSA
+
+See, you have started with pattern programs but still you need to brainstorm slowly before getting on to advanced concept. In short you need to train your brain to actually think more logically. This logical thinking doesn't come at once hence you need to progress slowly and keep brainstorming more and more to get solution of a problem.
+
+One more thing is that there can be multiple solutions to a problem and DSA is all about getting the optimal solution for a problem. If you don't be able to think the "Naive" and "Optimal" solution for a problem then you won't be able to get the logic if there are related questions and will end mugging up solutions.
+
+Playing With Digits
+    Suppose you are given with a digit which is of type integer obviously "78950". Here, you need to extract all digits seperately. If you can do this then solving any questions around digit is very easy. We extract digits in backward fashion by "modulo operator" and then "dividing" original number by 10.
+        
+        Q1. Count Number of Digits
+        Q2. Check Plaindrome Number
+        Q3. Check Armstrong Number
+        Q4. Print All Divisors
+        Q5. Check Evil Number
+    
+    All this question basically requires two things "extraction of all digits" and in some case "number of digits". So, this is how a approach should be i.e. actually underdtanding the base of the problem then solving all related problem.
+
+Observations: Print All Divisors of N. (Let's say n = 36)
+    This problem is easy and the first solution is loop from 1 to n and whichever number divides the given number, print those numbers. However, remember that "b divides a completely" if remainder is 0, so you need to perform modulo operation to get the factors.
+
+The above solution takes a time complexity of O(N) but how can you reduce it. You can see the following observation in this problem. The pattern is if (i) is a factor then (n/i) is also a factor.
+
+    Running a loop till square root of number will also yield me the same result. But here a catch is I want to print the factor 6 only once. To to this we need a extra check inside (n/i) i.e. (n/i != i) so it will terminate after printing the first 6 as the factor.
+
+        1 * 36
+        2 * 18
+        3 * 12
+        4 * 9
+        6 * 6
+        -------
+        9 * 4
+        12 * 3
+        18 * 2
+        36 * 1
+
+The output will be not in a ordered or sorted fashion so to obtain that you can simply store it in a array and can sort using inbuilt functions. The complexity now becomes O(sqrt(N)) which is less that O(N).
+
+Observations: Find HCF or GCD of a Number
+    If (a = 9) and (b = 12) then we need to find "Highest Common Factor" or the "Greatest Common Divisor" that divides a and b both.
+        Factors of 9: 1, 3, 9
+        Factors of 12: 1, 2, 3, 4, 6, 12
+            Thus, HCF or GCD is (1 and 3) in this case our answer is 3 because it is the highes common factor.
+        
+    Also, 1 is always a common factor for any 2 given number, thus GCD for two number always exists.
+
+    How to Solve the Problem?
+        Loop from 1 to minimum(n1, n2). If n1 and n2 is divided by loop control variable then store that in a variable and overwrite it whenever this condition becomes true.
+
+        Here is also a catch, if the GCD is towards the end then running loop from backward becomes optimal while if GCD is towards start then running loop from 1 makes sense.
+            Eg 1: Running loop from end makes sense because just break after first a common divisor is found.
+                    factors of 20: 1, 2, 4, 5, 10, 20
+                    factors of 40: 1, 2, 4, 5, 10, 20, 40
+            
+            Eg 2: Running loop from start makes sense because just break after first a common divisor is found.
+                factors of 30: 1, 2, 3, 4, 5, 6, 10, 15
+                factors of 25: 1, 2, 5, 25
+        
+    Both this case will take O(N) complexity in worst case because we don't know where actually the GCD lies.
+
+What is Euclidean Algorithm?
+    GCD of (n1, n2) is (n1 - n2, n2) where n1 > n2.
+
+    Example: Let's check it for 9 and 12
+        (9, 12) first change to (12, 9) i.e. n1 > n2
+            => (3, 9)
+
+        (3, 9) first change to (9, 3) i.e. n1 > n2
+            => (6, 3)
+
+        (6, 3) holds true n1 > n2 thus no change
+            => (3, 3)
+        
+        (3, 3) holds true because any number in such case can be considered as greater
+            => (0, 3)
+        
+    Thus, at any moment when n1 or n2 becomes 0 the other is the GCD.
+
+Can We Improve Euclidean Algorithm?
+    Yes, we can, just a single tweak can optimise the algorithm more and the condition becomes
+        GCD of (n1, n2) is (n1 % n2, n2) where n1 > n2.
+    
+    Example: Let's check it for 9 and 12
+        (9, 12) first change to (12, 9) i.e. n1 > n2
+            => (3, 9)
+
+        (3, 9) first change to (9, 3) i.e. n1 > n2
+            => (0, 3)
+        
+    Thus, at any moment when n1 or n2 becomes 0 the other is the GCD.
+
+    
+
+
